@@ -100,6 +100,10 @@ if (HYPRLAND)
 	add_subdirectory(hyprland)
 endif()
 
+if (SWAY)
+	add_subdirectory(sway)
+endif()
+
 target_link_libraries(quickshell-wayland PRIVATE ${QT_DEPS})
 target_link_libraries(quickshell-wayland-init PRIVATE ${QT_DEPS})
 
