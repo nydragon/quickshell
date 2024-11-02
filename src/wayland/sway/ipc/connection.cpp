@@ -48,6 +48,29 @@ void SwayIpc::makeRequest(
 	requestSocket->connectToServer(this->mSocketPath);
 }
 
+void SwayIpc::dispatch(const QString& payload) {
+	auto message = SwayIpc::buildRequestMessage(Message::RUN_COMMAND, payload.toLocal8Bit());
+
+	this->makeRequest(message, [payload](bool success, const QJsonDocument& reply) {
+		if (!success) {
+			qCWarning(logSwayIpc) << "Failed to request dispatch of" << payload;
+			return;
+		}
+
+		for (auto elem: reply.array()) {
+			if (!elem.isObject()) {
+				continue;
+			}
+
+			auto obj = elem.toObject();
+
+			if (obj["success"] != true) {
+				qCWarning(logSwayIpc) << "Dispatch of " << payload << "failed with: " << obj["error"];
+			}
+		}
+	});
+}
+
 QByteArray SwayIpc::buildRequestMessage(Message cmd, const QByteArray& payload) {
 	int len = static_cast<int>(payload.length());
 	QByteArray lenBytes = QByteArray(4, Qt::Initialization::Uninitialized);

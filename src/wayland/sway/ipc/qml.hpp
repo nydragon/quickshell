@@ -25,6 +25,15 @@ class SwayIpcQml: public QObject {
 public:
 	explicit SwayIpcQml();
 
+	/// Execute  a Sway command [man 5 sway]
+	Q_INVOKABLE static void dispatch(const QString& request);
+
+	/// Refresh monitor information.
+	Q_INVOKABLE static void refreshMonitors();
+
+	/// Refresh workspace information.
+	Q_INVOKABLE static void refreshWorkspaces();
+
 	[[nodiscard]] static QString socketPath();
 	[[nodiscard]] static ObjectModel<SwayMonitor>* monitors();
 	[[nodiscard]] static ObjectModel<SwayWorkspace>* workspaces();

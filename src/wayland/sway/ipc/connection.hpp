@@ -63,6 +63,7 @@ public:
 
 	void
 	makeRequest(const QByteArray& request, const std::function<void(bool, QJsonDocument)>& callback);
+	void dispatch(const QString& payload);
 
 	static QByteArray buildRequestMessage(Message cmd, const QByteArray& payload = QByteArray());
 	SwayWorkspace* findWorkspaceByName(const QString& name);
