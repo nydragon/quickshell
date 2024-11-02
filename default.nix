@@ -37,6 +37,7 @@
   withPipewire ? true,
   withPam ? true,
   withHyprland ? true,
+  withSway ? true,
 }: buildStdenv.mkDerivation {
   pname = "quickshell${lib.optionalString debug "-debug"}";
   version = "0.1.0";
@@ -77,6 +78,7 @@
     (lib.cmakeBool "SERVICE_PIPEWIRE" withPipewire)
     (lib.cmakeBool "SERVICE_PAM" withPam)
     (lib.cmakeBool "HYPRLAND" withHyprland)
+    (lib.cmakeBool "SWAY" withSway)
   ];
 
   # How to get debuginfo in gdb from a release build:
