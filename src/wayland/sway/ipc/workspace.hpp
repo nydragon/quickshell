@@ -9,8 +9,8 @@ class SwayWorkspace: public QObject {
 
 	Q_PROPERTY(qint32 id READ id NOTIFY idChanged);
 	Q_PROPERTY(QString name READ name NOTIFY nameChanged);
-	Q_PROPERTY(bool urgent READ urgent);
-	Q_PROPERTY(bool focused READ focused);
+	Q_PROPERTY(bool urgent READ urgent NOTIFY urgentChanged);
+	Q_PROPERTY(bool focused READ focused NOTIFY focusedChanged);
 
 	QML_ELEMENT;
 	QML_UNCREATABLE("SwayWorkspaces must be retrieved from the Sway object.");
@@ -29,6 +29,8 @@ public:
 signals:
 	void idChanged();
 	void nameChanged();
+	void urgentChanged();
+	void focusedChanged();
 
 private:
 	SwayIpc* ipc;

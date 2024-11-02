@@ -2,6 +2,7 @@ qt_add_library(quickshell-sway-ipc STATIC
 	connection.cpp
 	qml.cpp
 	workspace.cpp
+	monitor.cpp
 )
 
 qt_add_qml_module(quickshell-sway-ipc

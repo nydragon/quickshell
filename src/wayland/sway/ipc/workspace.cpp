@@ -22,10 +22,12 @@ void SwayWorkspace::updateFromObject(QJsonObject obj) {
 
 	if (obj["urgent"].isBool()) {
 		this->mUrgent = obj["urgent"].toBool();
+		emit this->urgentChanged();
 	}
 
 	if (obj["focused"].isString()) {
 		this->mFocused = obj["focused"].toBool();
+		emit this->focusedChanged();
 	}
 }
 
